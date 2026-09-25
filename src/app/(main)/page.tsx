@@ -245,7 +245,7 @@ export default function Home() {
               )}
 
               {/* Unit Skill Nodes Path */}
-              <div className="flex flex-col items-center space-y-9 relative w-full mt-6">
+              <div className="flex flex-col items-center space-y-10 relative w-full mt-16 mb-6">
                 {unit.skills.map((skill, skillIdx) => {
                   globalSkillIndex++;
                   const levelNum = globalSkillIndex;
@@ -264,14 +264,14 @@ export default function Home() {
                       {/* Node Popover Box matching screenshot! */}
                       {isSelected && (
                         <div 
-                          className="absolute -top-[125px] left-1/2 -translate-x-1/2 rounded-2xl p-4 z-40 whitespace-nowrap shadow-2xl flex flex-col items-center animate-in fade-in zoom-in duration-150 w-64"
+                          className="absolute -top-[135px] left-1/2 -translate-x-1/2 rounded-2xl p-4 z-50 whitespace-nowrap shadow-2xl flex flex-col items-center animate-in fade-in zoom-in duration-150 w-64"
                           style={{ backgroundColor: unit.color }}
                         >
-                          <div className="text-white font-black tracking-wider text-base mb-0.5 text-center">
-                            {unit.title}
+                          <div className="text-white font-black tracking-wider text-base mb-0.5 text-center truncate max-w-[220px]">
+                            {skill.title}
                           </div>
                           <div className="text-white/90 text-xs mb-3 font-bold">
-                            Lesson 1 of 3
+                            Lesson 1 of {skill.total_lessons || 3}
                           </div>
                           <Link href={`/lesson/${skill.id}`} className="w-full">
                             <button 
@@ -326,18 +326,18 @@ export default function Home() {
                         style={{ transform: `translateX(${offset}px)` }}
                         onClick={() => handleNodeClick(levelNum, isLocked)}
                       >
-                        {/* Start Badge above Active Node */}
-                        {isActive && (
-                          <div className="absolute -top-10 bg-[#202F36] border-2 border-[#58CC02] text-[#58CC02] text-[11px] font-black px-3 py-1 rounded-xl uppercase tracking-widest shadow-md z-30">
+                        {/* Start Badge above Active Node (hidden when popover open) */}
+                        {isActive && !isSelected && (
+                          <div className="absolute -top-10 bg-[#202F36] border-2 border-[#58CC02] text-[#58CC02] text-[11px] font-black px-3 py-1 rounded-xl uppercase tracking-widest shadow-md z-30 animate-bounce">
                             START
                           </div>
                         )}
 
-                        {/* Progress Ring for Active Level */}
+                        {/* Progress Ring for Active Level (Unstarted = 264 strokeDashoffset) */}
                         {isActive && (
                           <svg className="absolute w-[102px] h-[102px] -rotate-90 z-0 drop-shadow-md pointer-events-none">
                             <circle cx="51" cy="51" r="42" fill="none" stroke="#37464F" strokeWidth="8" />
-                            <circle cx="51" cy="51" r="42" fill="none" stroke="#58CC02" strokeWidth="8" strokeDasharray="264" strokeDashoffset="60" strokeLinecap="round" />
+                            <circle cx="51" cy="51" r="42" fill="none" stroke="#58CC02" strokeWidth="8" strokeDasharray="264" strokeDashoffset="264" strokeLinecap="round" />
                           </svg>
                         )}
 
