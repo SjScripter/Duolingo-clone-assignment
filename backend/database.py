@@ -1,9 +1,23 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./duolingo.db"
-# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
+if os.environ.get("VERCEL") or os.path.exists("/tmp"):
+    db_path = "/tmp/duolingo.db"
+    src = os.path.join(os.path.dirname(__file__), "duolingo.db")
+    if not os.path.exists(db_path) and os.path.exists(src):
+        import shutil
+        try:
+            shutil.copyfile(src, db_path)
+        except Exception:
+            pass
+    if os.path.exists(db_path):
+        SQLALCHEMY_DATABASE_URL = f"sqlite:///{db_path}"
+    else:
+        SQLALCHEMY_DATABASE_URL = f"sqlite:///{src}"
+else:
+    SQLALCHEMY_DATABASE_URL = "sqlite:///./duolingo.db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
@@ -18,3 +32,4 @@ def get_db():
         yield db
     finally:
         db.close()
+
