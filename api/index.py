@@ -1,7 +1,17 @@
 import os
 import sys
 
-# Add backend directory to python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
+# Add root directory and backend directory to sys.path
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+backend_dir = os.path.join(root_dir, 'backend')
 
-from backend.main import app
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
+try:
+    from backend.main import app
+except ImportError:
+    from main import app
+
