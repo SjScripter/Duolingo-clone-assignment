@@ -1,0 +1,13 @@
+{
+  "/(main)/guidebook/[id]/page": "/guidebook/[id]",
+  "/(main)/leaderboards/page": "/leaderboards",
+  "/(main)/page": "/",
+  "/(main)/profile/page": "/profile",
+  "/(main)/quests/page": "/quests",
+  "/(main)/sections/page": "/sections",
+  "/(main)/shop/page": "/shop",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/lesson/[id]/page": "/lesson/[id]"
+}

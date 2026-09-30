@@ -224,25 +224,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Fast Forward Badge ("JUMP HERE?") for Locked Units */}
-              {isUnitLocked && (
-                <div className="my-6 z-30 flex flex-col items-center">
-                  <div className="bg-[#202F36] border-2 border-[#37464F] text-white text-xs font-black px-4 py-1.5 rounded-xl uppercase tracking-widest shadow-md mb-2">
-                    JUMP HERE?
-                  </div>
-                  <div 
-                    style={{ backgroundColor: unit.color }}
-                    className="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                    onClick={() => {
-                      const firstSkillInUnit = globalSkillIndex + 1;
-                      setCurrentLevel(firstSkillInUnit);
-                      localStorage.setItem('duo_current_level', firstSkillInUnit.toString());
-                    }}
-                  >
-                    ⏩
-                  </div>
-                </div>
-              )}
+              {/* Fast Forward Badge ("JUMP HERE?") for Locked Units removed as per requirements */}
 
               {/* Unit Skill Nodes Path */}
               <div className="flex flex-col items-center space-y-10 relative w-full mt-16 mb-6">

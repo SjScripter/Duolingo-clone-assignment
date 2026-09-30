@@ -9,12 +9,12 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
-    xp = Column(Integer, default=505)
+    xp = Column(Integer, default=0)
     streak = Column(Integer, default=1)
     hearts = Column(Integer, default=5)
     gems = Column(Integer, default=500)
     daily_goal = Column(Integer, default=50)
-    daily_xp = Column(Integer, default=20)
+    daily_xp = Column(Integer, default=0)
     streak_freeze = Column(Integer, default=1)
     last_activity_date = Column(Date, default=datetime.date.today)
     

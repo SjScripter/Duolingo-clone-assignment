@@ -9,12 +9,12 @@ export default function RightSidebar() {
   const [stats, setStats] = useState<UserStats>({
     id: 1,
     username: "Learner",
-    xp: 505,
-    streak: 3,
+    xp: 0,
+    streak: 1,
     hearts: 5,
     gems: 500,
     daily_goal: 50,
-    daily_xp: 30,
+    daily_xp: 0,
     streak_freeze: 1
   });
   const [isRefilling, setIsRefilling] = useState(false);
@@ -119,16 +119,30 @@ export default function RightSidebar() {
         <div className="flex items-center space-x-4">
           <div className="text-3xl text-duo-yellow w-10 flex justify-center">⚡</div>
           <div className="flex-1">
-            <h4 className="text-white font-bold text-sm mb-1.5">Earn {stats.daily_goal} XP</h4>
-            <div className="w-full bg-[#37464F] h-3.5 rounded-full relative overflow-hidden">
-              <div 
-                className="bg-duo-yellow h-full absolute top-0 left-0 transition-all duration-500" 
-                style={{ width: `${Math.min(100, (stats.daily_xp / stats.daily_goal) * 100)}%` }}
-              ></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-black">
-                {stats.daily_xp} / {stats.daily_goal} XP
-              </div>
-            </div>
+            {stats.daily_xp >= stats.daily_goal ? (
+              <>
+                <h4 className="text-white font-bold text-sm mb-1.5">Quest Completed!</h4>
+                <div className="w-full bg-[#37464F] h-3.5 rounded-full relative overflow-hidden">
+                  <div className="bg-duo-yellow h-full absolute top-0 left-0 transition-all duration-500 w-full"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-black whitespace-nowrap">
+                    come tomorrow for next task
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <h4 className="text-white font-bold text-sm mb-1.5">Earn {stats.daily_goal} XP</h4>
+                <div className="w-full bg-[#37464F] h-3.5 rounded-full relative overflow-hidden">
+                  <div 
+                    className="bg-duo-yellow h-full absolute top-0 left-0 transition-all duration-500" 
+                    style={{ width: `${Math.min(100, (stats.daily_xp / stats.daily_goal) * 100)}%` }}
+                  ></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-black">
+                    {stats.daily_xp} / {stats.daily_goal} XP
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

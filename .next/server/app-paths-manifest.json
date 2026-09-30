@@ -1,0 +1,13 @@
+{
+  "/(main)/guidebook/[id]/page": "app/(main)/guidebook/[id]/page.js",
+  "/(main)/leaderboards/page": "app/(main)/leaderboards/page.js",
+  "/(main)/page": "app/(main)/page.js",
+  "/(main)/profile/page": "app/(main)/profile/page.js",
+  "/(main)/quests/page": "app/(main)/quests/page.js",
+  "/(main)/sections/page": "app/(main)/sections/page.js",
+  "/(main)/shop/page": "app/(main)/shop/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/lesson/[id]/page": "app/lesson/[id]/page.js"
+}
