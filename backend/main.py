@@ -172,6 +172,11 @@ def reset_progress(db: Session = Depends(get_db)):
         user.daily_xp = 0
         user.streak_freeze = 1
         user.last_activity_date = datetime.date.today()
+
+    lb_user = db.query(models.LeaderboardUser).filter(models.LeaderboardUser.is_current_user == True).first()
+    if lb_user:
+        lb_user.xp = 0
+        lb_user.streak = 1
     
     # Reset all user progress
     db.query(models.UserProgress).delete()
